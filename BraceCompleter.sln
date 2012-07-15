@@ -1,0 +1,53 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 11
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E3F3DFEC-95EB-45CF-A443-3B3A4BD3FABB}"
+	ProjectSection(SolutionItems) = preProject
+		BraceCompleter.vsmdi = BraceCompleter.vsmdi
+		IntegrationTests.testsettings = IntegrationTests.testsettings
+		UnitTests.testsettings = UnitTests.testsettings
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BraceCompleter", "BraceCompleterPackage\BraceCompleter.csproj", "{FC483291-0D76-440F-8B68-CC4A5AEF0434}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BraceCompleter_IntegrationTests", "BraceCompleterPackage\BraceCompleterPackage_IntegrationTests\BraceCompleter_IntegrationTests.csproj", "{6CF993D1-A640-45D7-9975-E2E093F99CC7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BraceCompleter_UnitTests", "BraceCompleterPackage\BraceCompleterPackage_UnitTests\BraceCompleter_UnitTests.csproj", "{18383493-9676-4270-AF24-867E858C9700}"
+EndProject
+Global
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = BraceCompleter.vsmdi
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug VS 2010|Any CPU = Debug VS 2010|Any CPU
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{18383493-9676-4270-AF24-867E858C9700}.Debug VS 2010|Any CPU.ActiveCfg = Debug VS 2010|Any CPU
+		{18383493-9676-4270-AF24-867E858C9700}.Debug VS 2010|Any CPU.Build.0 = Debug VS 2010|Any CPU
+		{18383493-9676-4270-AF24-867E858C9700}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{18383493-9676-4270-AF24-867E858C9700}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{18383493-9676-4270-AF24-867E858C9700}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{18383493-9676-4270-AF24-867E858C9700}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6CF993D1-A640-45D7-9975-E2E093F99CC7}.Debug VS 2010|Any CPU.ActiveCfg = Debug VS 2010|Any CPU
+		{6CF993D1-A640-45D7-9975-E2E093F99CC7}.Debug VS 2010|Any CPU.Build.0 = Debug VS 2010|Any CPU
+		{6CF993D1-A640-45D7-9975-E2E093F99CC7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6CF993D1-A640-45D7-9975-E2E093F99CC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6CF993D1-A640-45D7-9975-E2E093F99CC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6CF993D1-A640-45D7-9975-E2E093F99CC7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FC483291-0D76-440F-8B68-CC4A5AEF0434}.Debug VS 2010|Any CPU.ActiveCfg = Debug VS 2010|Any CPU
+		{FC483291-0D76-440F-8B68-CC4A5AEF0434}.Debug VS 2010|Any CPU.Build.0 = Debug VS 2010|Any CPU
+		{FC483291-0D76-440F-8B68-CC4A5AEF0434}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC483291-0D76-440F-8B68-CC4A5AEF0434}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FC483291-0D76-440F-8B68-CC4A5AEF0434}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FC483291-0D76-440F-8B68-CC4A5AEF0434}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(SubversionScc) = preSolution
+		Manager = AnkhSVN - Subversion Support for Visual Studio
+		Svn-Managed = True
+	EndGlobalSection
+EndGlobal
