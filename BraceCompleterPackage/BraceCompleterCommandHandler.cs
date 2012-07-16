@@ -121,7 +121,7 @@ namespace JoelSpadin.BraceCompleter
 			IWpfTextView textView, IEditorOperations operations, ITextUndoHistory undoHistory)
 		{
 			CompletionItems = new Dictionary<char,CompletionItem> {
-				{ '{', new CompletionItem('{', '}', () => _options.ImmediateCompletion },
+				{ '{', new CompletionItem('{', '}', () => _options.ImmediateCompletion) },
 				{ '[', new ImmediateCompletionItem('[', ']') },
 				{ '(', new ImmediateCompletionItem('(', ')') },
 				{ '"', new SymmetricalCompletionItem('"') },

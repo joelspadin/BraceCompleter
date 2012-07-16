@@ -155,6 +155,7 @@
     </Compile>
     <Compile Include="BraceCompleterCommandHandler.cs" />
     <Compile Include="BraceCompleterHandlerProvider.cs" />
+    <Compile Include="CompletionItem.cs" />
     <Compile Include="Guids.cs" />
     <Compile Include="BraceOptions.cs" />
     <Compile Include="OptionsControl.xaml.cs">
@@ -216,10 +217,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="license.txt">
+    <None Include="LICENSE">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
+    </None>
     <Content Include="Resources\Package.ico" />
     <Content Include="screenshot.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
