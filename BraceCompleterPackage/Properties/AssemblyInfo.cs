@@ -29,8 +29,8 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Revision and Build Numbers 
 // by using the '*' as shown below:
 
-[assembly: AssemblyVersion("1.5.3.0")]
-[assembly: AssemblyFileVersion("1.5.3.0")]
+[assembly: AssemblyVersion("1.5.4.0")]
+[assembly: AssemblyFileVersion("1.5.4.0")]
 
 [assembly: InternalsVisibleTo("BraceCompleterPackage_IntegrationTests, PublicKey=0024000004800000940000000602000000240000525341310004000001000100896c86327cd1fc1f4045134ad64e2b3d3012c6f0970d48561b2eb3044522507b7522f7bef219823f6cd18bc586b976ed29ed4dc92da97f203c8f58d135485df723bdfdfb6dfbabdc657b34c164d02bb0912ba62b516be6c86cdd74df3708cbca031f4f7af7818768c275843ee154ae88a65868cd8e3b819583bcb303337550d5")]
 [assembly: InternalsVisibleTo("BraceCompleterPackage_UnitTests, PublicKey=0024000004800000940000000602000000240000525341310004000001000100896c86327cd1fc1f4045134ad64e2b3d3012c6f0970d48561b2eb3044522507b7522f7bef219823f6cd18bc586b976ed29ed4dc92da97f203c8f58d135485df723bdfdfb6dfbabdc657b34c164d02bb0912ba62b516be6c86cdd74df3708cbca031f4f7af7818768c275843ee154ae88a65868cd8e3b819583bcb303337550d5")]

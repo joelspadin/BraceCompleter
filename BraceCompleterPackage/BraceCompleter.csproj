@@ -166,11 +166,6 @@
     <Compile Include="OptionsControlForm.Designer.cs">
       <DependentUpon>OptionsControlForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Resources\Resources.de-DE.Designer.cs">
-      <DependentUpon>Resources.de-DE.resx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <Compile Include="Resources\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -188,10 +183,8 @@
     <EmbeddedResource Include="OptionsControlForm.resx">
       <DependentUpon>OptionsControlForm.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="Resources\Resources.de-DE.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.de-DE.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
+    <None Include="LICENSE">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <EmbeddedResource Include="Resources\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
@@ -213,10 +206,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="icon.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="license.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
