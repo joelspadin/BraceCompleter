@@ -156,6 +156,7 @@
     <Compile Include="BraceCompleterCommandHandler.cs" />
     <Compile Include="BraceCompleterHandlerProvider.cs" />
     <Compile Include="CompletionItem.cs" />
+    <Compile Include="CompletionPair.cs" />
     <Compile Include="Guids.cs" />
     <Compile Include="BraceOptions.cs" />
     <Compile Include="OptionsControl.xaml.cs">

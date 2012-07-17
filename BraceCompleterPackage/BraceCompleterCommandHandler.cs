@@ -84,10 +84,7 @@ namespace JoelSpadin.BraceCompleter
 		/// </summary>
 		private char OpeningToken
 		{
-			get
-			{
-				return lastCompletionItem == null ? '{' : lastCompletionItem.OpeningToken;
-			}
+			get { return lastCompletionItem == null ? '{' : lastCompletionItem.OpeningToken; }
 		}
 
 		/// <summary>
@@ -95,10 +92,7 @@ namespace JoelSpadin.BraceCompleter
 		/// </summary>
 		private char ClosingToken
 		{
-			get
-			{
-				return lastCompletionItem == null ? '}' : lastCompletionItem.ClosingToken;
-			}
+			get { return lastCompletionItem == null ? '}' : lastCompletionItem.ClosingToken; }
 		}
 
 		/// <summary>
@@ -106,10 +100,12 @@ namespace JoelSpadin.BraceCompleter
 		/// </summary>
 		private bool IsImmediateCompletion
 		{
-			get
-			{
-				return lastCompletionItem == null ? false : lastCompletionItem.IsImmediateCompletion;
-			}
+			get { return lastCompletionItem == null ? false : lastCompletionItem.IsImmediateCompletion; }
+		}
+
+		private bool FormatOnEnter
+		{
+			get { return lastCompletionItem == null ? true : lastCompletionItem.FormatOnEnter; }
 		}
 
 
@@ -121,13 +117,13 @@ namespace JoelSpadin.BraceCompleter
 			IWpfTextView textView, IEditorOperations operations, ITextUndoHistory undoHistory)
 		{
 			CompletionItems = new Dictionary<char,CompletionItem> {
-				{ '{', new CompletionItem('{', '}', () => _options.ImmediateCompletion) },
-				{ '[', new ImmediateCompletionItem('[', ']') },
-				{ '(', new ImmediateCompletionItem('(', ')') },
-				{ '"', new SymmetricalCompletionItem('"') },
-				{ '\'', new SymmetricalCompletionItem('\'') },
+				{ '{', new CompletionItem('{', '}', true, () => _options.ImmediateCompletion) },
+				{ '[', new ImmediateCompletionItem('[', ']', true) },
+				{ '(', new ImmediateCompletionItem('(', ')', true) },
+				{ '"', new SymmetricalCompletionItem('"', false) },
+				{ '\'', new SymmetricalCompletionItem('\'', false) },
 			};
-
+			
 			_textView = textView;
 			_operations = operations;
 			_undoHistory = undoHistory;
@@ -223,8 +219,11 @@ namespace JoelSpadin.BraceCompleter
 			// if the character is an open brace, get ready for brace completion
 			CompletionItem completionItem;
 			_lastCharIsBrace = CompletionItems.TryGetValue(typedChar, out completionItem);
+			// If the opening and closing characters are the same, typing the character, the last completion item uses immediate
+			// completion, and the next character is the closing item, close the item instead of opening a new one
+			bool isSymmetricClosing = _lastCharIsBrace && (OpeningToken == ClosingToken) && IsImmediateCompletion && IsNextCharClosingBrace();
 
-			if (_lastCharIsBrace)
+			if (_lastCharIsBrace && !isSymmetricClosing)
 			{
 				lastCompletionItem = completionItem;
 
@@ -236,7 +235,7 @@ namespace JoelSpadin.BraceCompleter
 			if (_options.ImmediateCompletion || IsImmediateCompletion)
 			{
 				// do special stuff when immediate completion is active
-				if (_lastCharIsBrace)
+				if (_lastCharIsBrace && !isSymmetricClosing)
 				{
 					// close brace after an opening brace
 					AddClosingItemImmediate(completionItem);
@@ -264,12 +263,13 @@ namespace JoelSpadin.BraceCompleter
 		{
 			// If the caret position hasn't been moved and the previous character is an opening brace, 
 			// complete the brace, otherwise, cancel.
-			if (IsCaretSamePosition() && IsPreviousCharOpeningBrace())
+			if (IsCaretSamePosition() && IsPreviousCharOpeningBrace() && FormatOnEnter)
 			{
 				// add the closing brace
-				CloseCurlyBrace();
+				AddClosingItem();
 				_lastCharIsBrace = false;
 				_closeBracePosition = null;
+				_openBracePosition = null;
 				return true;
 			}
 			else
@@ -284,7 +284,7 @@ namespace JoelSpadin.BraceCompleter
 			// if backspace pressed, cancel brace completion
 			// if immediate completion is on, delete the automatically added brace
 			if (IsCaretSamePosition())
-				RemoveCurlyBraceImmediate();
+				RemoveClosingItemImmediate();
 			_lastCharIsBrace = false;
 			return false;
 		}
@@ -393,7 +393,7 @@ namespace JoelSpadin.BraceCompleter
 		/// <summary>
 		/// Undoes the brace added by CloseCurlyBraceImmediate
 		/// </summary>
-		private void RemoveCurlyBraceImmediate()
+		private void RemoveClosingItemImmediate()
 		{
 			if (_nextCharIsClosingBrace)
 			{
@@ -404,11 +404,11 @@ namespace JoelSpadin.BraceCompleter
 		}
 
 		
-		private void CloseCurlyBrace()
+		private void AddClosingItem()
 		{
 			// remove any curly brace that was added immediately after typing {
 			if (_options.ImmediateCompletion || IsImmediateCompletion)
-				RemoveCurlyBraceImmediate();
+				RemoveClosingItemImmediate();
 
 			if (_options.SmartFormat && _languageUsesSmartFormat)
 				CloseCurlyBraceSmartFormat();

@@ -9,22 +9,24 @@ namespace JoelSpadin.BraceCompleter
     {
         internal char OpeningToken { get; private set; }
         internal char ClosingToken { get; private set; }
+		internal bool FormatOnEnter { get; private set; }
         internal bool IsImmediateCompletion { get { return immediateCompletion(); } }
 
         private Func<bool> immediateCompletion;
 
-        public CompletionItem(char openingToken, char closingToken, Func<bool> immediateCompletion)
+        public CompletionItem(char openingToken, char closingToken, bool formatOnEnter, Func<bool> immediateCompletion)
         {
             OpeningToken = openingToken;
             ClosingToken = closingToken;
+			FormatOnEnter = formatOnEnter;
             this.immediateCompletion = immediateCompletion;
         }
     }
 
     internal class ImmediateCompletionItem : CompletionItem
     {
-        public ImmediateCompletionItem(char openingToken, char closingToken)
-            : base(openingToken, closingToken, () => true)
+        public ImmediateCompletionItem(char openingToken, char closingToken, bool formatOnEnter)
+            : base(openingToken, closingToken, formatOnEnter, () => true)
         {
             // empty
         }
@@ -32,7 +34,7 @@ namespace JoelSpadin.BraceCompleter
 
     internal class SymmetricalCompletionItem : ImmediateCompletionItem
     {
-        public SymmetricalCompletionItem(char token) : base(token, token)
+        public SymmetricalCompletionItem(char token, bool formatOnEnter) : base(token, token, formatOnEnter)
         {
             // empty
         }
