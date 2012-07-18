@@ -183,9 +183,9 @@
     <EmbeddedResource Include="OptionsControlForm.resx">
       <DependentUpon>OptionsControlForm.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="LICENSE">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    <Content Include="LICENSE">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
     <EmbeddedResource Include="Resources\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -206,12 +206,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="icon.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Resources\Package.ico" />
     <Content Include="screenshot.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
   </ItemGroup>
