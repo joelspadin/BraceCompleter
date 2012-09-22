@@ -28,7 +28,7 @@ namespace JoelSpadin.BraceCompleter
 		private string _others = string.Empty;
 
 		private bool _immediateCompletion = false;
-		private bool _smartFormat = false;
+		private bool _smartFormat = true;
 		private bool _cppIndentBraces = false;
 
 		[Category("Languages")]

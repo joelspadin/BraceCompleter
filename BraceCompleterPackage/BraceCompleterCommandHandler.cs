@@ -406,6 +406,7 @@ namespace JoelSpadin.BraceCompleter
 				_operations.AddAfterTextBufferChangePrimitive();
 				undo.Complete();
 			}
+
 		}
 
 		/// <summary>
@@ -647,6 +648,10 @@ namespace JoelSpadin.BraceCompleter
 
 			// Check whether the code before the cursor is a try block
 			if (Regex.IsMatch(prevCode, @"\btry\s*{$"))
+				return true;
+
+			// Check whether brace pair is inside parenthesis or after comma
+			if (Regex.IsMatch(prevCode, @"[,(]\s*{$"))
 				return true;
 
 			return false;
