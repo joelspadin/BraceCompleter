@@ -106,10 +106,10 @@ namespace JoelSpadin.BraceCompleter
 			_languageUnindentsBraceBeforeBrace = new List<string> { "CSharp" }.Contains(_options.Language);
 			_languageUsesSmartFormat = new List<string> { "CSharp" }.Contains(_options.Language);
 
-			var doesNotUnindentBrace = new List<string>	{ "CSharp", "C/C++", "JavaScript", "CSS" };
+			var doesNotUnindentBrace = new List<string>	{ "CSharp", "C/C++", "JavaScript", "TypeScript", "CSS" };
 			_languageAlwaysUnindentsBrace = !doesNotUnindentBrace.Contains(_options.Language);
 
-			var doesNotNeedBlockIndent = new List<string> { "CSharp", "C/C++", "CSS" };
+			var doesNotNeedBlockIndent = new List<string> { "CSharp", "C/C++", "CSS", "TypeScript" };
 			_languageNeedsBlockIndent = !doesNotNeedBlockIndent.Contains(_options.Language);
 
 			Debug.Print("Brace completion {0:enabled;disabled} in {1} TextView.", _options.CompleteBraces, _options.Language);
@@ -419,7 +419,7 @@ namespace JoelSpadin.BraceCompleter
 			// hack to fix indentation of brace before brace in C# when IndentBraces is on
 			bool csharpUnindent = (_languageUnindentsBraceBeforeBrace && nextLineIsCloseBrace && _options.IndentBraces);
 			// hack to fix indentation of main block in JavaScript inside of anonymous functions
-			bool jsUnindent = _options.Language == "JavaScript" && NeedsJavaScriptHack();
+			bool jsUnindent = NeedsJavaScriptHack();
 			// determine whether or not to fix the indentation of the closing brace by unindenting it one level.
 			// If the language automatically unindents it, no correction is needed.
 			bool indentCorrectionNeeded = (!_languageUnindentsBraceBeforeBrace || (_languageUnindentsBraceBeforeBrace && !nextLineIsCloseBrace)) && !_languageAlwaysUnindentsBrace;
@@ -612,6 +612,9 @@ namespace JoelSpadin.BraceCompleter
 		/// <returns></returns>
 		private bool NeedsJavaScriptHack()
 		{
+			if (_options.Language != "JavaScript" && _options.Language != "TypeScript")
+				return false;
+
 			string prevCode = null;
 			// Set an undo point so no changes will be made
 			using (var undo = _undoHistory.CreateTransaction("(temp) read previous code"))
@@ -650,8 +653,8 @@ namespace JoelSpadin.BraceCompleter
 			if (Regex.IsMatch(prevCode, @"\btry\s*{$"))
 				return true;
 
-			// Check whether brace pair is inside parenthesis or after comma
-			if (Regex.IsMatch(prevCode, @"[,(]\s*{$"))
+			// Check whether brace pair is inside parenthesis or after comma/colon
+			if (Regex.IsMatch(prevCode, @"[,:(]\s*{$"))
 				return true;
 
 			return false;

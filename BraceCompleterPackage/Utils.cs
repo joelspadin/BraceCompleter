@@ -167,6 +167,7 @@ namespace JoelSpadin.BraceCompleter
 				options.CompleteBraces = (bool)PackageProperties.Item("JScript").Value;
 				break;
 			case "JavaScript":
+			case "TypeScript":
 				options.CompleteBraces = (bool)PackageProperties.Item("JavaScript").Value;
 				break;
 			case "plaintext":
